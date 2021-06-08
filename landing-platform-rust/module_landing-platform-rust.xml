@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_landing-platform-rust" default="compile.module.landing-platform-rust">
+  <dirname property="module.landing-platform-rust.basedir" file="${ant.file.module_landing-platform-rust}"/>
+  
+  <property name="module.jdk.home.landing-platform-rust" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.landing-platform-rust" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.landing-platform-rust" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.landing-platform-rust" value="-encoding UTF-8 -source 13 -target 13 ${compiler.args}"/>
+  
+  <property name="landing-platform-rust.output.dir" value="${module.landing-platform-rust.basedir}/out/production/landing-platform-rust"/>
+  <property name="landing-platform-rust.testoutput.dir" value="${module.landing-platform-rust.basedir}/out/test/landing-platform-rust"/>
+  
+  <path id="landing-platform-rust.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="landing-platform-rust.module.production.classpath"/>
+  
+  <path id="landing-platform-rust.runtime.production.module.classpath">
+    <pathelement location="${landing-platform-rust.output.dir}"/>
+  </path>
+  
+  <path id="landing-platform-rust.module.classpath">
+    <pathelement location="${landing-platform-rust.output.dir}"/>
+  </path>
+  
+  <path id="landing-platform-rust.runtime.module.classpath">
+    <pathelement location="${landing-platform-rust.testoutput.dir}"/>
+    <pathelement location="${landing-platform-rust.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.landing-platform-rust">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.landing-platform-rust">
+    <patternset refid="excluded.from.module.landing-platform-rust"/>
+  </patternset>
+  
+  
+  <target name="compile.module.landing-platform-rust" depends="compile.module.landing-platform-rust.production,compile.module.landing-platform-rust.tests" description="Compile module landing-platform-rust"/>
+  
+  <target name="compile.module.landing-platform-rust.production" depends="register.custom.compilers" description="Compile module landing-platform-rust; production classes"/>
+  
+  <target name="compile.module.landing-platform-rust.tests" depends="register.custom.compilers,compile.module.landing-platform-rust.production" description="compile module landing-platform-rust; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.landing-platform-rust" description="cleanup module">
+    <delete dir="${landing-platform-rust.output.dir}"/>
+    <delete dir="${landing-platform-rust.testoutput.dir}"/>
+  </target>
+</project>
